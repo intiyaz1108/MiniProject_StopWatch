@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Stopwatch</title>
+</head>
+<style>
+.circle{
+height:450px;
+width:450px;
+margin:10% auto;
+border-radius:250px;
+background-color:pink;
+box-shadow:0 0 0 10px red;
+}
+body{
+background-color:aqua;
+}
+h1{
+color:indigo;
+font-size:35px;
+}
+h2{
+font-size:50px;
+}
+p{
+color:red;
+}
+button{
+color:white;
+background-color:green;
+}
+h3{
+font-size:30px;
+}
+</style>
+<center>
+<body>
+<div class='circle'>
+ <h1>Stopwatch</h1>
+ <h2><p id="time">00:00:00</p></h2>
+ <h3><button onclick="start()">Start</button> 
+<button onclick="stop()">Stop</button> 
+<button onclick="reset()">Reset</button></h3>
+ <script>  
+var seconds = 0; 
+ var minutes = 0; 
+ var hours = 0; 
+ var displaySeconds = 0; 
+ var displayMinutes = 0; 
+ var displayHours = 0;  
+var interval = null;
+  function stopwatch() { 
+  seconds++;  
+ if (seconds / 60 === 1) { 
+   seconds = 0;   
+ minutes++;   
+ if (minutes / 60 === 1) {    
+ minutes = 0;  
+   hours++;  
+  }  
+ }
+   if (seconds < 10) {  
+  displaySeconds = "0" + seconds.toString(); 
+  } else {    displaySeconds = seconds;  
+ }  
+ if (minutes < 10) {  
+  displayMinutes = "0" + minutes.toString();  
+ } else {    displayMinutes = minutes;  
+ }  
+ if (hours < 10) {   
+ displayHours = "0" + hours.toString();  
+ } else {    displayHours = hours; 
+  }
+   document.getElementById("time").innerHTML = displayHours + ":" + displayMinutes + ":" + displaySeconds;
+  }
+  function start() {  
+ interval = window.setInterval(stopwatch, 1000); 
+ }
+  function stop() { 
+  window.clearInterval(interval);
+  }
+  function reset() {  
+ window.clearInterval(interval);  
+ seconds = 0;   
+minutes = 0;   
+hours = 0;   
+document.getElementById("time").innerHTML = "00:00:00";  
+} 
+</script>
+</div>
+</body>
+</center>
+</html>
